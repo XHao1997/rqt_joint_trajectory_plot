@@ -187,7 +187,7 @@ class MainWidget(QWidget):
                 item = joint_item.child(n)
                 if item.checkState(0) == Qt.Checked:
                     joint_name = joint_item.text(0)
-                    curve_name = f"{self.label.text()}/{joint_name} {traj_name}"
+                    curve_name = f"{self.label_reference.text()}/{joint_name} {traj_name}"
                     curve_names.append(curve_name)
                     data[curve_name] = (self.time, data_list[n][joint_name])
         self.draw_curves.emit(curve_names, data)
