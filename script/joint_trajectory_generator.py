@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 import sys
 import actionlib
@@ -9,11 +9,11 @@ from trajectory_msgs.msg import JointTrajectory,JointTrajectoryPoint
 from control_msgs.msg import FollowJointTrajectoryAction, FollowJointTrajectoryGoal
 
 class JointTrajectoryGenerator:
-    def __init__(self, time=1.0, step=0.01, freq=1.0, joint_num=1, topic='/joint_trajectory', action='/joint_trajectroy_action'):
+    def __init__(self, time=1.0, step=0.01, freq=1.0, topic='/joint_trajectory', action='/joint_trajectroy_action'):
         self.time = time
         self.step = step
         self.freq = freq
-        self.joint_names = ['joint_'+str(n) for n in range(joint_num)]
+        self.joint_names = ['swing', 'boom', 'arm', 'bucket']
 
         self.pub = rospy.Publisher(topic, JointTrajectory, queue_size=10)
         self.client = actionlib.SimpleActionClient(
@@ -53,11 +53,12 @@ if __name__ == "__main__":
     sys.argv = rospy.myargv()
     args = parser.parse_args()
 
-    generator = JointTrajectoryGenerator(joint_num=args.joint_num,
+    generator = JointTrajectoryGenerator(
                                          topic=args.topic,
                                          action=args.action)
 
     rate = rospy.Rate(1)
+    
     while not rospy.is_shutdown():
         generator.update()
         rate.sleep()

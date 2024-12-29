@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 from rqt_gui_py.plugin import Plugin
 from .main_widget import MainWidget
 

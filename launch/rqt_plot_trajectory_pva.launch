@@ -1,3 +1,6 @@
 <launch>
-  <node pkg="rqt_gui" type="rqt_gui" respawn="false" name="$(anon rqt_plot_traj)" output="screen" args="--perspective-file $(find rqt_joint_trajectory_plot)/rqt_perspectives/3x_joint_trajectory_plot.perspective"/>
+  <node pkg="rqt_gui" type="rqt_gui" respawn="false" name="$(anon rqt_plot_traj)" output="screen" args="--perspective-file $(find rqt_joint_trajectory_plot)/rqt_perspectives/test.perspective"/>
+  
+  <node name="trajectory_1" pkg="rqt_joint_trajectory_plot" type="joint_trajectory_generator.py" args="--topic /joint_trajectory_1 --action /joint_trajectory_action_1"/>
+  <node name="trajectory_4" pkg="rqt_joint_trajectory_plot" type="joint_trajectory_generator.py" args="--topic /joint_trajectory_4 --action /joint_trajectory_action_4"/>
 </launch>
